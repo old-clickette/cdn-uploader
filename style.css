@@ -7,6 +7,7 @@ html {
 }
 * {
   font-family: 'Gotham';
+  word-wrap: break-word;
 }
 button{padding:10px;border-radius:5px;border:none;background-color:#fd7014;color:#eee;font-size:16px;cursor:pointer;}
 input#file{padding:10px;border-radius:5px;border:none;background-color:#2b2c30;color:#eee;font-size:16px;margin-left: 5px;}

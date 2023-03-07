@@ -11,12 +11,9 @@
 
 <body>
   <h1>Clickette CDN</h1>
-  <label for="username">Username:</label>
-  <input type="username" id="username" name="username" autocomplete="off"><br><br>
-  <label for="password">Password:</label>
-  <input type="password" id="password" name="password" autocomplete="off"><br><br>
+  <input type="username" id="username" name="username" autocomplete="off" placeholder="Username"><br><br>
+  <input type="password" id="password" name="password" autocomplete="off" placeholder="Password"><br><br>
   <label>Not yet a user? <a href="/register">Register</a>.</label><br><br>
-  <label for="file">Select a file:</label>
   <input type="file" id="file" name="file" accept="audio/*,video/*,image/*"><br><br>
   <button onclick="uploadFile()">Upload</button><br><br>
   <div id="result"></div>
