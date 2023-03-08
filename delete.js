@@ -1,13 +1,11 @@
-const uuid = document.getElementById("uuid").innerHTML;
-const authorizationToken = document.getElementById("authorization-token").innerHTML;
 function deleteUser() {
-fetch(`https://cdn.clickette.net/api/user/${uuid}`, {
+let uuidText = document.getElementById("uuid").value;
+let authorizationToken = document.getElementById("authorization-token").value;
+fetch('https://cdn.clickette.net/api/user/' + uuidText, {
   method: 'DELETE',
   headers: {
     'Authorization': authorizationToken,
     'Content-Type': 'application/x-www-form-urlencoded',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'DELETE, POST'
   },
 })
 .then(response => {
