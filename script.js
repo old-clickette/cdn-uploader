@@ -27,13 +27,13 @@ function getLatestUpload() {
     let cookieFileType = cookie[0].fileType;
     if (cookieFileType == 'img') {
       lastUploadContainer.innerHTML = `<h3>Last Upload</h3><img src="${cookiePreviewUrl}">
-<br><br><a href="${cookieUrl}">${cookieUrl}</a><br><a href="${cookieDeleteUrl}">Delete</a>`
+<br><br><a href="${cookieUrl}">${cookieUrl}</a><br><a onclick="document.cookie.split(';').forEach(function(c) { document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/'); });document.querySelector('#last').innerHTML=\`<h3>Last Upload</h3><p>Nothing yet!</p>\`;document.querySelector('#result').innerHTML = '';window.open('${cookieDeleteUrl}', '_blank', 'location=yes,height=110,width=420,scrollbars=yes,status=yes');" id="delete">Delete</a>`
     } else if (cookie[0].fileType == 'audio') {
       lastUploadContainer.innerHTML = `<h3>Last Upload</h3><audio controls=""><source src="${cookiePreviewUrl}"></audio>
-<br><br><a href="${cookieUrl}">${cookieUrl}</a><br><a href="${cookieDeleteUrl}">Delete</a>`;
+<br><br><a href="${cookieUrl}">${cookieUrl}</a><br><a onclick="document.cookie.split(';').forEach(function(c) { document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/'); });document.querySelector('#last').innerHTML=\`<h3>Last Upload</h3><p>Nothing yet!</p>\`;document.querySelector('#result').innerHTML = '';window.open('${cookieDeleteUrl}', '_blank', 'location=yes,height=110,width=420,scrollbars=yes,status=yes');" id="delete">Delete</a>`;
     } else if (cookie[0].fileType == 'video') {
       lastUploadContainer.innerHTML = `<h3>Last Upload</h3><video controls=""><source src="${cookiePreviewUrl}"></video>
-<br><br><a href="${cookieUrl}">${cookieUrl}</a><br><a href="${cookieDeleteUrl}">Delete</a>`;
+<br><br><a href="${cookieUrl}">${cookieUrl}</a><br><a onclick="document.cookie.split(';').forEach(function(c) { document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/'); });document.querySelector('#last').innerHTML=\`<h3>Last Upload</h3><p>Nothing yet!</p>\`;document.querySelector('#result').innerHTML = '';window.open('${cookieDeleteUrl}', '_blank', 'location=yes,height=110,width=420,scrollbars=yes,status=yes');" id="delete">Delete</a>`;
     }
   } else {
     lastUploadContainer.innerHTML = `<h3>Last Upload</h3><p>Nothing yet!</p>`;
@@ -84,7 +84,7 @@ async function uploadFile() {
         filePreview = document.createElement("img");
         let oldSourceImg = data.resource;
         fileType = 'img';
-        filePreview.src = oldSourceImg.replace(/.{4}$/, "/direct/");
+        filePreview.src = oldSourceImg.replace(/.{4}$/, "/direct");
       } else if (file.type.startsWith("audio/")) {
         // For audio files, create an <audio> element
         filePreview = document.createElement("audio");
@@ -92,7 +92,7 @@ async function uploadFile() {
         let oldSourceAudio = data.resource;
         fileType = 'audio';
         const source = document.createElement("source");
-        source.src = oldSourceAudio.replace(/.{4}$/, "/direct/");
+        source.src = oldSourceAudio.replace(/.{4}$/, "/direct");
         source.type = file.type;
         filePreview.appendChild(source);
       } else if (file.type.startsWith("video/")) {
@@ -102,7 +102,7 @@ async function uploadFile() {
         fileType = 'video';
         filePreview.controls = true;
         const source = document.createElement("source");
-        source.src = oldSourceVideo.replace(/.{4}$/, "/direct/");
+        source.src = oldSourceVideo.replace(/.{4}$/, "/direct");
         source.type = file.type;
         filePreview.appendChild(source);
       }
@@ -120,8 +120,9 @@ async function uploadFile() {
 
       // Add a "Delete" link
       const deleteLink = document.createElement("a");
-      deleteLink.href = data.delete;
+      deleteLink.href = `javascript:document.cookie.split(';').forEach(function(c) { document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/'); });document.querySelector('#last').innerHTML=\`<h3>Last Upload</h3><p>Nothing yet!</p>\`;document.querySelector('#result').innerHTML = '';window.open('${data.delete}', '_blank', 'location=yes,height=110,width=420,scrollbars=yes,status=yes');`;
       deleteLink.textContent = "Delete";
+      deleteLink.id = 'delete';
       resultDiv.appendChild(document.createElement("br"));
       resultDiv.appendChild(deleteLink);
 
@@ -130,7 +131,7 @@ async function uploadFile() {
       const uploadData = {
         url: data.resource,
         deleteUrl: data.delete,
-        previewUrl: oldSourceCookie.replace(/.{4}$/, "/direct/"),
+        previewUrl: oldSourceCookie.replace(/.{4}$/, "/direct"),
         fileType: fileType,
       };
       const MAX_UPLOADS = 1;
@@ -173,16 +174,6 @@ async function uploadFile() {
   xhr.send(formData);
 }
 
-
-
-// Add an event listener to the API key input field
-const apiKeyInput = document.getElementById("api-key");
-apiKeyInput.addEventListener("input", () => {
-  const apiKey = apiKeyInput.value;
-  if (apiKey) {
-    getUserInfo(apiKey);
-  }
-});
 function getCookie(name) {
   const cookies = document.cookie.split('; ');
   for (let i = 0; i < cookies.length; i++) {

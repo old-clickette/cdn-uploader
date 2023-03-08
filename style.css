@@ -1,16 +1,42 @@
-@font-face { font-family: 'Gotham'; font-style: bold; font-weight: 500; src: local('Gotham'), url('https://fonts.cdnfonts.com/s/14898/GothamMedium.woff') format('woff'); font-display: swap; }
+@font-face {
+  font-family: 'Gotham';
+  font-style: bold;
+  font-weight: 500;
+  src: local('Gotham'), url('https://fonts.cdnfonts.com/s/14898/GothamMedium.woff') format('woff');
+  font-display: swap;
+}
+
 html {
   height: 100%;
   width: 100%;
   background-color: #202124;
   color: #eee;
 }
+
 * {
   font-family: 'Gotham';
   word-wrap: break-word;
 }
-button{padding:10px;border-radius:5px;border:none;background-color:#fd7014;color:#eee;font-size:16px;cursor:pointer;}
-input#file{padding:10px;border-radius:5px;border:none;background-color:#2b2c30;color:#eee;font-size:16px;margin-left: 5px;}
+
+button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #fd7014;
+  color: #eee;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input#file {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #2b2c30;
+  color: #eee;
+  font-size: 16px;
+}
+
 input::-webkit-file-upload-button {
   background-color: #fd7014;
   border: none;
@@ -24,7 +50,10 @@ input::-webkit-file-upload-button {
   font-family: 'Gotham';
   cursor: pointer;
 }
-input[type=username], input[type=password], input[type=text] {
+
+input[type=username],
+input[type=password],
+input[type=text] {
   padding: 7px;
   margin-left: 5px;
   margin-right: 5px;
@@ -33,9 +62,11 @@ input[type=username], input[type=password], input[type=text] {
   border-radius: 5px;
   border: none;
 }
+
 a {
   color: #9f6aff;
 }
+
 /* Set the background color of the progress bar */
 progress {
   background-color: #202124;
@@ -54,7 +85,9 @@ progress::-webkit-progress-bar {
   border-radius: 15px;
 }
 
-img, video, audio {
+img,
+video,
+audio {
   width: 350px;
 }
 
@@ -64,6 +97,7 @@ img, video, audio {
   padding: 10px;
   width: 450px;
   margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -76,4 +110,18 @@ img, video, audio {
 
 h3 {
   margin-top: 5px;
+}
+
+a#delete {
+  color: #ef6767;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none;
+}
+
+img, video {
+  border-radius: 10px;
 }
