@@ -1,3 +1,30 @@
+const registerPage = `<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" href="https://clickette.net/assets/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/style.css" />
+  <title>Clickette CDN</title>
+</head>
+
+<body>
+  <h1>Clickette CDN</h1>
+  <input type="username" id="username" name="username" autocomplete="off" placeholder="Username"><br><br>
+  <input type="password" id="password" name="password" autocomplete="off" placeholder="Password"><br><br>
+  <input type="password" id="confirmPassword" name="password" autocomplete="off" placeholder="Confirm Password"><br><br>
+  <input type="text" id="invite-code" name="invite-code" autocomplete="off" placeholder="Invite Code"><br><br>
+  <label> Looking for an invite code? <a
+      href="mailto:contact@clickette.net?subject=I%20would%20like%20access%20to%20the%20Clickette%20CDN">Let us
+      know!</a></label><br><br>
+  <button onclick="registerAccount()">Register</button><br><br>
+  <label>Already have an account? <a onclick='document.location.reload()'>Use the CDN</a>.</label>
+  <script src="/register.js"></script>
+</body>
+
+</html>`;
+
 var fileType;
 async function checkPassword(username, password) {
   const response = await fetch('https://cdn.clickette.net/api/user/password/check', {

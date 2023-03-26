@@ -65,6 +65,11 @@ input[type=text] {
 
 a {
   color: #9f6aff;
+  text-decoration: underline;
+}
+
+a:hover {
+  cursor: pointer;
 }
 
 /* Set the background color of the progress bar */
